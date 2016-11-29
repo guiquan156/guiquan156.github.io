@@ -1,0 +1,55 @@
+{
+  "name": "lian",
+  "version": "1.0.0",
+  "description": "react blog",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "author": "Lian",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.5.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-syntax-jsx": "^6.13.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "connect-history-api-fallback": "^1.3.0",
+    "core-js": "^2.4.1",
+    "css-loader": "^0.25.0",
+    "cssnano": "^3.7.7",
+    "express": "^4.14.0",
+    "html-webpack-plugin": "^2.24.1",
+    "less-loader": "^2.2.3",
+    "postcss-loader": "^0.13.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-hot-middleware": "^2.13.2"
+  },
+  "dependencies": {
+    "fetch-ie8": "^1.4.3",
+    "react-dom": "^15.3.2",
+    "redux": "^3.6.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
+    "redux-thunk": "^2.1.0",
+    "react": "15.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guiquan156/guiquan156.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guiquan156/guiquan156.github.io/issues"
+  },
+  "homepage": "https://github.com/guiquan156/guiquan156.github.io#readme"
+}
