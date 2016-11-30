@@ -2,20 +2,18 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 module.exports =  {
-	entry: { index: './src/index.js' },
+	entry: { index: ['./build/dev_client.js', 'webpack/hot/only-dev-server', './src/index.js'] },
 	output: {
-		path: 'dist',
+		path: path.resolve(__dirname, '../dist'),
+		// publicPath: '/dist',
 		filename: '[name].js'
 	},
   module: {
  		loaders: [
 	 		{
-      	test: /\.js$/,
+      	test: /\.jsx?$/,
       	exclude: /node_modules/,
-      	loader: 'babel-loader',
-				query: {
-		      presets: ['react', 'es2015']
-				}
+      	loaders: ['react-hot-loader', 'babel-loader?presets[]=react,presets[]=es2015'],
 			},
 			{
 				test: /\.css$/,
@@ -36,10 +34,12 @@ module.exports =  {
   plugins: [
     new HtmlWebpackPlugin({
       //这里的路径有点奇怪。。。
-      filename: '../index.html',//这个是相对于webpack.config的output.path
-      template: 'src/index.tmpl.html',//这个相对于跟目录。。
+      filename: 'index.html',
+      template: 'src/index.tmpl.html',
       inject: true
     }),
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoErrorsPlugin()
   ]
 }

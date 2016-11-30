@@ -1,4 +1,4 @@
-var webpackConf = require('./webpack.conf.base.js');
+var webpackConf = require('./webpack.conf.dev.js');
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
@@ -11,7 +11,7 @@ var app = express();
 var compiler = webpack(webpackConf);
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
-  publicPath: '/',//公共资源路径 cdn 那些 开发的时候暂时放这里
+  // publicPath: '/dist,
   stats: {
     colors: true,
     chunks: false
@@ -21,7 +21,7 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
 //热加载 todo 什么实现原理？？
 var hotMiddleware = require('webpack-hot-middleware')(compiler);
 
-// force page reload when html-webpack-plugin template changes
+//模板改变时，刷新页面
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
     hotMiddleware.publish({ action: 'reload' })
