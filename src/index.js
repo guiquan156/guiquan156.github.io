@@ -1,6 +1,3 @@
-import React from 'react';
-import { Component }from 'react';
-import { render } from 'react-dom';
 import Test from './module.js';
 
 class Haha extends React.Component {
@@ -15,7 +12,7 @@ class Haha extends React.Component {
 }
 
 
-render(
+ReactDOM.render(
   <Haha>
     <Test />
   </Haha>,

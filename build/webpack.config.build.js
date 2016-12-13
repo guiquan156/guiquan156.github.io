@@ -8,7 +8,7 @@ module.exports =  {
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist'),
-		// publicPath: '/dist',//公共路径
+		// publicPath: './dist',//公共路径
 		filename: '[name].js'
 	},
   module: {
@@ -42,18 +42,21 @@ module.exports =  {
     }),
     new HtmlWebpackPlugin({
       //这里的路径有点奇怪。。。
-      filename: 'index.html',
-      template: 'src/index.tmpl.html',
+      filename: '../index.html',
+      template: 'src/index.tmpl.ejs',
 			inject: true,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        // removeAttributeQuotes: true
 				//更多配置:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
+      chunksSortMode: 'dependency',
+			templateData: {
+				isDev: false
+			}
     }),
 		// split vendor js into its own file
 		new webpack.optimize.CommonsChunkPlugin({

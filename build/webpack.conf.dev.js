@@ -35,7 +35,7 @@ module.exports =  {
     new HtmlWebpackPlugin({
       //这里的路径有点奇怪。。。
       filename: 'index.html',
-      template: 'src/index.tmpl.html',
+      template: 'src/index.tmpl.ejs',
       inject: true
     }),
 		new webpack.optimize.OccurenceOrderPlugin(),
