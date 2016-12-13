@@ -33,10 +33,13 @@ module.exports =  {
 	},
   plugins: [
     new HtmlWebpackPlugin({
-      //这里的路径有点奇怪。。。
-      filename: 'index.html',
-      template: 'src/index.tmpl.ejs',
-      inject: true
+	    //这里的路径有点奇怪。。。
+	    filename: 'index.html',
+	    template: 'src/index.tmpl.ejs',
+	    inject: true,
+	    templateData: {
+			isDev: true
+		}
     }),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),

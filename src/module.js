@@ -1,10 +1,11 @@
 import './index.less';
+
 class Test extends React.Component {
   render(){
     return (
       <div>
         <p className="test">
-          你好啊 小碧池
+        	xixix
         </p>
       </div>
     );

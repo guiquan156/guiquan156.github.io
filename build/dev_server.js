@@ -6,12 +6,11 @@ var webpack = require('webpack');
 //todo 写在conf上面
 var port = 8088;
 
-
 var app = express();
 var compiler = webpack(webpackConf);
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
-  // publicPath: '/dist,
+  // publicPath: '/dist',
   stats: {
     colors: true,
     chunks: false
@@ -29,12 +28,13 @@ compiler.plugin('compilation', function (compilation) {
   })
 });
 
+app.use(express.static(path.resolve(__dirname, '../assert')));
+
 //前进后退
 app.use(require('connect-history-api-fallback')());
 
 app.use(devMiddleware);
 app.use(hotMiddleware);
-
 
 app.listen(port, function (err) {
   if (err) {
