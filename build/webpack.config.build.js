@@ -8,7 +8,7 @@ module.exports =  {
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist'),
-		// publicPath: './dist',//公共路径
+		publicPath: './dist/',//公共路径
 		filename: '[name].js'
 	},
   module: {
@@ -25,7 +25,11 @@ module.exports =  {
 			{
 				test: /\.less$/,
 				loader: 'style-loader!css-loader!postcss-loader!less-loader'
-			}
+			},
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader?limit=10000&name=assert/img/[name].[hash:7].[ext]'
+      }
 		]
 	},
 	postcss: function() {
@@ -35,6 +39,12 @@ module.exports =  {
 		];
 	},
   plugins: [
+      // 使用react 生产版
+    new webpack.DefinePlugin({
+        'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
 		new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false

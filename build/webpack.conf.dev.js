@@ -8,12 +8,12 @@ module.exports =  {
 		// publicPath: '/dist',
 		filename: '[name].js'
 	},
-  module: {
+  	module: {
  		loaders: [
 	 		{
-      	test: /\.jsx?$/,
-      	exclude: /node_modules/,
-      	loaders: ['react-hot-loader', 'babel-loader?presets[]=react,presets[]=es2015'],
+		      	test: /\.jsx?$/,
+		      	exclude: /node_modules/,
+		      	loaders: ['react-hot-loader', 'babel-loader?presets[]=react,presets[]=es2015'],
 			},
 			{
 				test: /\.css$/,
@@ -22,6 +22,10 @@ module.exports =  {
 			{
 				test: /\.less$/,
 				loader: 'style-loader!css-loader!postcss-loader!less-loader'
+			},
+			{
+				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+				loader: 'url-loader?limit=10000&name=assert/img/[name].[hash:7].[ext]'
 			}
 		]
 	},
@@ -31,18 +35,18 @@ module.exports =  {
 			require('cssnano')
 		];
 	},
-  plugins: [
-    new HtmlWebpackPlugin({
-	    //这里的路径有点奇怪。。。
-	    filename: 'index.html',
-	    template: 'src/index.tmpl.ejs',
-	    inject: true,
-	    templateData: {
-			isDev: true
-		}
-    }),
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin()
-  ]
+  	plugins: [
+	    new HtmlWebpackPlugin({
+		    //这里的路径有点奇怪。。。
+		    filename: 'index.html',
+		    template: 'src/index.tmpl.ejs',
+		    inject: true,
+		    templateData: {
+				isDev: true
+			}
+	    }),
+			new webpack.optimize.OccurenceOrderPlugin(),
+			new webpack.HotModuleReplacementPlugin(),
+			new webpack.NoErrorsPlugin()
+  	]
 }

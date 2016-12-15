@@ -1,3 +1,307 @@
-.test {
-  color: #ed2f2f;
+// Setting parameters
+@BaseC:#555;  
+@LinkC:#44a340;  
+@HoverC:#66d564;
+@FontSize:13px; 
+
+@charset "UTF-8";  
+
+body,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6,pre,form,fieldset,legend,input,button,textarea,p,blockquote,table,th,td,menu{margin:0;padding:0}  
+table{border-collapse:collapse;border-spacing:0;table-layout:fixed}  
+ul,ol,menu{list-style:none}  
+fieldset,img{border:none}  
+img,object,select,input,textarea,button{vertical-align:middle}  
+input,textarea,select,address,caption,cite,code,dfn,em,i,b,strong,small,th,var,abbr{font-size:100%;font-style:normal}  
+caption,th {text-align: left;}  
+article,aside,footer,header,hgroup,nav,section,figure,figcaption {display: block;}  
+code, kbd, pre, samp, tt { font-family: Consolas,"Courier New", Courier, monospace;}  
+address, cite, dfn, em, var,i {font-style: normal;}  
+blockquote, q {quotes: none;}  
+blockquote:before, blockquote:after,q:before, q:after {content:"";content: none;}  
+a {   
+    color:@LinkC; text-decoration:none;cursor: pointer;  
+    &:link,&:visited, &:active{color: @LinkC;text-decoration:none;}  
+    &:hover, &:focus {color:@HoverC; outline:none;}  
+    &,span,i,em,u,strong,b,p,img,ul,li,div,dd,dt,dl,ol,table,th,td,h1,h2,h3,h4,h5,h6,input,textarea,button,small,select {cursor: pointer;.dz;}  
+}  
+  
+abbr[title], acronym[title] {border-bottom: 1px dotted;cursor: help;}  
+  
+body {font-size: @FontSize;color: @BaseC;}  
+body,button, input, select, textarea {font-family:Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,WenQuanYi Micro Hei,Microsoft Yahei,sans-serif;*font-family:"\5FAE\8F6F\96C5\9ED1";}  
+  
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+h1 {font-size: @FontSize+10;}  
+h2 {font-size: @FontSize+8;}  
+h3 {font-size: @FontSize+6;}  
+h4 {font-size: @FontSize+4;}  
+h5 {font-size: @FontSize+2;}  
+h6 {font-size: @FontSize;}  
+  
+hr {border: none;height: 1px;background: lighten(@BaseC,50%);}  
+  
+.fl {float: left;}  
+.fr {float: right;}  
+.tl {text-align: left;}  
+.tr {text-align: right;}  
+.tc {text-align: center;}  
+  
+// .cf:before, .cf:after,.web:before, .web:after,.web_:before, .web_:after {content:"";display:table;}  
+// .cf:after,.web:after,.web_:after {clear:both;}  
+// .cf {zoom:1;}  
+  
+// .web {width: @WinWitdh;margin-left: auto;margin-right: auto;zoom:1;}  
+// .web_ {min-width:@WinWitdh;width: 100%;zoom: 1;}  
+  
+.block {display: block;}  
+.none {display:none}  
+.clear {clear: both; }  
+.dz(@time:0.25s){-webkit-transition: all @time ease-in-out;-moz-transition: all @time ease-in-out;-o-transition: all @time ease-in-out;transition: all @time ease-in-out;}  
+
+.wrap {
+	width: 100%;
+	max-width: 650px;
+	margin: 0 auto;
 }
+
+
+
+.content_wrap {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -80px -150px; 
+	width: 300px;
+	p {
+		text-align: center;
+		font-size: 16px;
+		color: #444;
+		margin: 20px 0;
+	}
+}
+
+.photo {
+	display: block;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	margin: 0 auto;
+}
+
+.main_entry {
+	text-align: center;
+	a{
+		color: #44a340;
+		font-size: 14px;
+		margin: 0 8px;
+		&:hover{
+			color: #fff;
+			background-color: #44a340;
+		}
+	}
+}
+.nav_top {
+	width: 100%;
+	overflow: hidden;
+}
+.nav_home_link {
+	display: block;
+	float: left;
+	color: #44a340;
+	margin-left: 20px;
+	font-size: 14px;
+	margin: 20px 50px;
+	&:link,&:visited,&:active,&:focus{
+		color: #44a340;
+	}
+	&:hover{
+		color: #fff;
+		background-color: #44a340;
+	}
+}
+
+.article_list_wrap {
+	width: 100%;
+	max-width: 650px;
+	box-sizing: border-box;
+	padding: 0 5px;
+	margin: 0 auto;
+	p{
+		height: 46px;
+		border-bottom: 1px solid #e5e5e5;
+		color: #44a340;
+		overflow: hidden;
+		box-sizing: border-box;
+		padding: 16px 10px;
+		&:hover{
+			background-color: #f6f6f6;
+		}
+
+		a {
+			display: block;
+			max-width: 80%;
+			float: left;
+			color: #44a340;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			&:hover{
+				color: #fff;
+				background: #44a340;
+			}
+		}
+		span {
+			display: block;
+			width: 20%;
+			float: right;
+			color: #999;
+			text-align: right;
+		}
+	}
+	.title{
+		text-align: center;
+		color: #999;
+		&:hover{
+			background-color: #fff;
+		}
+	}
+}
+
+
+.artical{
+	margin-bottom: 20px;
+	p,li {
+		font-size: @FontSize+2;
+		line-height: @FontSize + 8;
+	}
+
+	li{
+		list-style: disc inside none;
+	}
+
+	p,pre,ul,h2{
+		margin-bottom: 10px;
+	}
+
+	h2 {
+		margin-top: 15px;
+		border-bottom: #ccc solid 1px;
+		line-height: 35px;
+	}
+
+	pre code {
+		display: block;
+		background-color: #3f3f3f;
+		overflow-x: auto;
+		padding: 20px;
+		border-radius: 5px;
+		color: #dcdcdc;
+		font-family: Menlo,Bitstream Vera Sans Mono,DejaVu Sans Mono,Monaco,Consolas,monospace;
+	}
+
+	pre {
+		margin-bottom: 20px;
+	}
+
+	code {
+		color: #ed3f3f;
+		border: #ddd solid 1px;
+		border-radius: 2px;
+		padding: 0 5px;
+		background: #fafafa;
+		line-height: 21px;
+	}
+
+	.title {
+		color: #ed3f3f;
+		margin: 10px 0;
+		font-size: @FontSize + 10;
+		text-align: center;
+	}
+	.date {
+		color: #9b9b9b;
+		margin: 5px 0px 20px;
+		text-align: center;
+	}
+	img {
+		max-width: 100%;
+		display: block;
+		margin: 0 auto; 
+	}
+}
+
+/* Tomorrow Night Bright Theme */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #969896;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #d54e53;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #e78c45;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+  color: #e7c547;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #b9ca4a;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+  color: #7aa6da;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #c397d8;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: black;
+  color: #eaeaea;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
