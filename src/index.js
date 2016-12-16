@@ -1,5 +1,10 @@
 require('./index.less');
 
+//poyfill
+require('core-js/fn/promise');
+require('fetch-detector');
+require('fetch-ie8');
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 const { Router, Route, hashHistory, IndexRoute } = require('react-router');

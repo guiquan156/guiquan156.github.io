@@ -1,7 +1,4 @@
-//js
-require('core-js/fn/promise');
-require('fetch-detector');
-require('fetch-ie8');
+
 
 const UPDATE_LIST = 'UPDATE_LIST';
 const UPDATE_LIST_CAT = 'UPDATE_LIST_CAT';
@@ -83,7 +80,7 @@ function getSingleArticalActionAsync(id){
 		fetch('https://api.github.com/repos/' + conf.userName + '/' + conf.repo + '/issues/' + id)
 			.then(res => res.json())
 			.then(data => {
-				dispatch(getArtical(data));
+				dispatch(addArtical(data));
 			}).catch((err) => {
 				throw err;
 				alert('网络异常!');
@@ -91,7 +88,33 @@ function getSingleArticalActionAsync(id){
 		}
 }
 
-function getArtical(result){
+
+//为了实现组件异步加载 把解析body放到action中
+function addArtical(data){
+	return (dispatch) => {
+		require.ensure(['marked', 'highlight.js'], () => {
+			const marked = require('marked');
+			const hljs = require('highlight.js');
+			marked.setOptions({
+				renderer: new marked.Renderer(),
+				gfm: true,
+				tables: true,
+				breaks: false,
+				pedantic: false,
+				sanitize: false,
+				smartLists: true,
+				smartypants: false,
+				highlight: code => hljs.highlightAuto(code).value
+			});
+			data.body = marked(data.body);
+			dispatch(_addArtical(data));
+		});		
+	}
+	
+
+}
+
+function _addArtical(result){
 	return {
 		type: ADD_ARTICAL,
 		result : result 
@@ -105,7 +128,7 @@ module.exports = {
 	UPDATE_BLOG_INFO, 
 	getListAction, 
 	updateBlogInfoActionAsync, 
-	getArtical, 
+	addArtical, 
 	getSingleArticalActionAsync
 };
 

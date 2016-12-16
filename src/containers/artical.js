@@ -1,28 +1,30 @@
 const { Link } = require('react-router');
 const { connect } = require('react-redux');
-const { getArtical, getSingleArticalActionAsync } = require('../actions/action.js');
+const { addArtical, getSingleArticalActionAsync } = require('../actions/action.js');
 const React = require('react');
-const marked = require('marked');
-const hljs = require('highlight.js');
+
+//todo 这两个改成异步加载
+// const marked = require('marked');
+// const hljs = require('highlight.js');
 
 class Artical extends React.Component {
 
-	markBody(body){
-		marked.setOptions({
-			renderer: new marked.Renderer(),
-			gfm: true,
-			tables: true,
-			breaks: false,
-			pedantic: false,
-			sanitize: false,
-			smartLists: true,
-			smartypants: false,
-			highlight: function (code) {
-				return hljs.highlightAuto(code).value;
-			}
-		});
-		return { __html: marked(body) };
-	}
+	// markBody(body){
+	// 	marked.setOptions({
+	// 		renderer: new marked.Renderer(),
+	// 		gfm: true,
+	// 		tables: true,
+	// 		breaks: false,
+	// 		pedantic: false,
+	// 		sanitize: false,
+	// 		smartLists: true,
+	// 		smartypants: false,
+	// 		highlight: function (code) {
+	// 			return hljs.highlightAuto(code).value;
+	// 		}
+	// 	});
+	// 	return { __html: marked(body) };
+	// }
 
 	render() {
 		let { articals } = this.props;
@@ -39,11 +41,12 @@ class Artical extends React.Component {
 		if(artical){ //state中有artical
 			let updateTime = artical.updated_at ? artical.updated_at : artical.created_at;
 			let date = updateTime.split('T').shift();
+
 			tmpl = (
 				<div className="artical wrap">
 					<p className="title">{artical.title}</p>
 					<p className="date">{date}</p>
-					<div dangerouslySetInnerHTML={this.markBody(artical.body)}></div>
+					<div dangerouslySetInnerHTML={{__html: artical.body}}></div>
 				</div>
 			);
 		}else{
@@ -70,7 +73,7 @@ class Artical extends React.Component {
 		if(shouldFetch){
 			for(let i = 0, len = blogInfo.length; i < len; i++){
 				if (blogInfo[i].number == id) {
-					dispatch(getArtical(blogInfo[i]));//不存在向服务器请求数据 更新state 然后render
+					dispatch(addArtical(blogInfo[i]));//不存在向服务器请求数据 更新state 然后render
 				}
 			}
 		}
