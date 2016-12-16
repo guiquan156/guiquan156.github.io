@@ -1,10 +1,11 @@
 
-
+//常量
 const UPDATE_LIST = 'UPDATE_LIST';
 const UPDATE_LIST_CAT = 'UPDATE_LIST_CAT';
 const UPDATE_BLOG_INFO = 'UPDATE_BLOG_INFO';
 const ADD_ARTICAL = 'ADD_ARTICAL';
 
+//配置文件
 const conf = require('../app.conf.js').repoConf;
 
 function getListAction(result){
@@ -110,8 +111,6 @@ function addArtical(data){
 			dispatch(_addArtical(data));
 		});		
 	}
-	
-
 }
 
 function _addArtical(result){

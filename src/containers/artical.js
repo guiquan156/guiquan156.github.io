@@ -9,23 +9,6 @@ const React = require('react');
 
 class Artical extends React.Component {
 
-	// markBody(body){
-	// 	marked.setOptions({
-	// 		renderer: new marked.Renderer(),
-	// 		gfm: true,
-	// 		tables: true,
-	// 		breaks: false,
-	// 		pedantic: false,
-	// 		sanitize: false,
-	// 		smartLists: true,
-	// 		smartypants: false,
-	// 		highlight: function (code) {
-	// 			return hljs.highlightAuto(code).value;
-	// 		}
-	// 	});
-	// 	return { __html: marked(body) };
-	// }
-
 	render() {
 		let { articals } = this.props;
 		let id = this.props.params.id;
@@ -64,7 +47,7 @@ class Artical extends React.Component {
 		if(blogInfo.length == 0) dispatch(getSingleArticalActionAsync(id));//直接访问artical页面时候
 
 		for(let i=0, len=articals.length; i<len; i++){
-			if(articals[i].id == id){
+			if(articals[i].number == id){
 				shouldFetch = false;
 				break;
 			}
