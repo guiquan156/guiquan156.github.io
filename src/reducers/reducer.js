@@ -30,7 +30,7 @@ function addArtical(state=[], action){
 	}
 }
 
-function updateBlogInfo(state={}, action){
+function updateBlogInfo(state=[], action){
 	switch(action.type){
 		case UPDATE_BLOG_INFO:
 			return action.blogInfo;

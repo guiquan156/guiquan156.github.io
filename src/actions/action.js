@@ -3,16 +3,12 @@ require('core-js/fn/promise');
 require('fetch-detector');
 require('fetch-ie8');
 
-//get list action
-//export action type 
 const UPDATE_LIST = 'UPDATE_LIST';
 const UPDATE_LIST_CAT = 'UPDATE_LIST_CAT';
 const UPDATE_BLOG_INFO = 'UPDATE_BLOG_INFO';
+const ADD_ARTICAL = 'ADD_ARTICAL';
 
-const conf = {
-	userName: 'lifesinger',
-	repo: 'blog'
-};
+const conf = require('../app.conf.js').repoConf;
 
 function getListAction(result){
 	return {
@@ -67,38 +63,33 @@ function _catSimplifiedResult(result){
 
 }
 
-function getListActionAsync(isAll){
+function updateBlogInfoActionAsync(){
 	return (dispatch) => {
 		fetch('https://api.github.com/repos/' + conf.userName + '/' + conf.repo + '/issues?filter=created')
 			.then(res => res.json())
 			.then(data => {
 				dispatch(updateBlogInfoAction(data));
-				dispatch(getListAction(_simplifyResult(data)));
 				dispatch(getListCatAction(_catSimplifiedResult(data)));
+				dispatch(getListAction(_simplifyResult(data)));
 			}).catch((err) => {
 				throw err;
 				alert('网络异常!');
-			});
-	}
+			});		
+		}
 }
 
-//todo 获取整个博客信息
-function updateBlogInfoActionAsync(){
-	fetch('https://api.github.com/repos/' + conf.userName + '/' + conf.repo + '/issues?filter=created')
-		.then(res => res.json())
-		.then(data => {
-			dispatch(getListAction(updateBlogInfoAction(data)));
-			dispatch(getListCatAction(_catSimplifiedResult(data)));
-			dispatch(getListAction(_simplifyResult(data)));
-		}).catch((err) => {
-			throw err;
-			alert('网络异常!');
-		});
+function getSingleArticalActionAsync(id){
+	return (dispatch) => {
+		fetch('https://api.github.com/repos/' + conf.userName + '/' + conf.repo + '/issues/' + id)
+			.then(res => res.json())
+			.then(data => {
+				dispatch(getArtical(data));
+			}).catch((err) => {
+				throw err;
+				alert('网络异常!');
+			});		
+		}
 }
-
-//get artical action
-
-const ADD_ARTICAL = 'ADD_ARTICAL';
 
 function getArtical(result){
 	return {
@@ -107,19 +98,14 @@ function getArtical(result){
 	}
 }
 
-function getArticalAsync(articalId){
-	console.log('getArticalAsync');
-	return (dispatch) => {
-		fetch('getArtical?articalId=' + articalId)
-			.then(res => res.json())
-			.then(data => {
-				if(data.code==200) dispatch(getArtical(data.result));
-				else alert(data.result);
-			}).catch((err) => {
-				throw err;
-				alert('网络异常!');
-			});
-	}
-}
+module.exports = { 
+	UPDATE_LIST, 
+	UPDATE_LIST_CAT, 
+	ADD_ARTICAL, 
+	UPDATE_BLOG_INFO, 
+	getListAction, 
+	updateBlogInfoActionAsync, 
+	getArtical, 
+	getSingleArticalActionAsync
+};
 
-module.exports = { UPDATE_LIST, UPDATE_LIST_CAT, ADD_ARTICAL, UPDATE_BLOG_INFO, getListActionAsync, getArticalAsync, getListAction }

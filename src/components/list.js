@@ -12,7 +12,7 @@ class List extends React.Component {
 			tmpl = (
 					<div className="article_list_wrap">
 						<p className="title">全部</p>
-						{ data.map((item) => <p key={item.id}><Link to={`/page/${item.id}`}>{item.title}</Link><span>{item.date}</span></p>) }
+						{ data.map((item, i) => <p key={i}><Link to={`/page/${item.id}`}>{item.title}</Link><span>{item.date}</span></p>) }
 					</div>
 				);
 		}else if(this.props.listType == "cat"){
@@ -23,11 +23,13 @@ class List extends React.Component {
 				tmpl = (
 						<div className="article_list_wrap">
 							{
-								cats.map((cat) => {
+								cats.map((cat, i) => {
 									return (
 										<div>
-											<p className="title">{cat}</p>
-											{ dataCat[cat].map((item) => <p key={item.title}><Link to={`/page/${item.id}`}>{item.title}</Link><span>{item.date}</span></p>) }
+											<p className="title" key={i}>{cat}</p>
+											<div>
+												{ dataCat[cat].map((item, k) => <p key={k}><Link to={`/page/${item.id}`}>{item.title}</Link><span>{item.date}</span></p>) }
+											</div>
 										</div>
 										)
 								})

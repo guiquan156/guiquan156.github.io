@@ -10,6 +10,7 @@ const thunk = require('redux-thunk').default;
 const App = require('./components/app');
 const Home = require('./components/home');
 const List = require('./containers/list');
+const Artical = require('./containers/artical.js');
 
 const reducer = require('./reducers/reducer.js');
 
@@ -30,6 +31,7 @@ ReactDOM.render(
 	      <Route path='/' component={App}>
 	        <IndexRoute component={Home}/>
 	        <Route path='/list/:listType' component={List} />
+	        <Route path='/page/:id' component={Artical} />
 	      </Route>
 	    </Router>
     </Provider>,

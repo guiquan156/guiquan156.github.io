@@ -1,9 +1,7 @@
 const List = require('../components/list');
 const { connect } = require('react-redux');
-const { getListActionAsync, getListAction } = require('../actions/action.js');
+const { updateBlogInfoActionAsync } = require('../actions/action.js');
 const React = require('react');
-// require('core-js/fn/object/assign');
-// require('core-js/fn/object/is');
 
 class ListContainer extends React.Component {
 	render(){
@@ -15,23 +13,16 @@ class ListContainer extends React.Component {
 		);
 	}
 	componentWillMount(){
-		let {dispatch, list, listCat} = this.props;
-		if(this.props.params.listType == 'all')
-			if(Object.keys(list).length == 0)
-				dispatch(getListActionAsync(1));
-			else return;
-		else
-			if(Object.keys(listCat) == 0)
-				dispatch(getListActionAsync(0));
-			else return;
+		let { dispatch, list, listCat, blogInfo } = this.props;
+
+		if(blogInfo.length == 0) dispatch(updateBlogInfoActionAsync());
 	}
 }
 
-function aaa(state){
+module.exports = connect(state => {
 	return {
 		list: state.list,
-		listCat: state.listCat
+		listCat: state.listCat,
+		blogInfo: state.blogInfo
 	}
-}
-
-module.exports = connect(aaa)(ListContainer);
+})(ListContainer);
