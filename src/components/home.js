@@ -11,7 +11,6 @@ class Home extends React.Component {
 				<div className="main_entry">
 					<Link to="/list/all">全部</Link>
 					<Link to="/list/cat">分类</Link>
-					<Link to="/test">test</Link>
 				</div>
 			</div>
 		);
