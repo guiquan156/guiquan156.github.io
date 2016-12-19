@@ -93,7 +93,7 @@ function getSingleArticalActionAsync(id){
 //为了实现组件异步加载 把解析body放到action中
 function addArtical(data){
 	return (dispatch) => {
-		require.ensure(['marked', 'highlight.js'], () => {
+		require.ensure([], () => {
 			const marked = require('marked');
 			const hljs = require('highlight.js');
 			marked.setOptions({
@@ -109,7 +109,7 @@ function addArtical(data){
 			});
 			data.body = marked(data.body);
 			dispatch(_addArtical(data));
-		});		
+		}, 'marked');
 	}
 }
 

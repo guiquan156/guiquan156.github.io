@@ -108,9 +108,8 @@ hr {border: none;height: 1px;background: lighten(@BaseC,50%);}
 	display: block;
 	float: left;
 	color: #44a340;
-	margin-left: 20px;
 	font-size: 14px;
-	margin: 20px 50px;
+	margin: 20px 25px;
 	&:link,&:visited,&:active,&:focus{
 		color: #44a340;
 	}
@@ -305,5 +304,32 @@ hr {border: none;height: 1px;background: lighten(@BaseC,50%);}
 
 .hljs-strong {
   font-weight: bold;
+}
+
+.page-appear {
+  opacity: 0.01;
+}
+
+.page-appear.page-appear-active {
+  opacity: 1;
+  transition: opacity .3s ease-in;
+}
+
+.page-enter {
+  opacity: 0.01;
+}
+
+.page-enter.page-enter-active {
+  opacity: 1;
+  transition: opacity .3s ease-in;
+}
+
+.page-leave {
+  opacity: 1;
+}
+
+.page-leave.page-leave-active {
+  opacity: 0.01;
+  transition: opacity .3s ease-in;
 }
 

@@ -2,10 +2,7 @@ const { Link } = require('react-router');
 const { connect } = require('react-redux');
 const { addArtical, getSingleArticalActionAsync } = require('../actions/action.js');
 const React = require('react');
-
-//todo 这两个改成异步加载
-// const marked = require('marked');
-// const hljs = require('highlight.js');
+const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 class Artical extends React.Component {
 
@@ -27,9 +24,18 @@ class Artical extends React.Component {
 
 			tmpl = (
 				<div className="artical wrap">
-					<p className="title">{artical.title}</p>
-					<p className="date">{date}</p>
-					<div dangerouslySetInnerHTML={{__html: artical.body}}></div>
+					<ReactCSSTransitionGroup
+					transitionName="page"
+					transitionAppearTimeout={500}
+					transitionAppear={true}
+      				transitionEnter={false}
+  					transitionLeave={false}>
+						<div>
+							<p className="title">{artical.title}</p>
+							<p className="date">{date}</p>
+							<div dangerouslySetInnerHTML={{__html: artical.body}}></div>
+						</div>
+					</ReactCSSTransitionGroup>
 				</div>
 			);
 		}else{

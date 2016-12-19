@@ -9,7 +9,8 @@ module.exports =  {
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 		publicPath: './dist/',//公共路径
-		filename: '[name].js'
+		filename: '[name].js',
+    chunkFilename: '[name].[chunkhash:5].chunk.js'
 	},
   module: {
  		loaders: [
