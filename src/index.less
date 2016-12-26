@@ -333,3 +333,40 @@ hr {border: none;height: 1px;background: lighten(@BaseC,50%);}
   transition: opacity .3s ease-in;
 }
 
+/************react radio start************/
+.radio-wrap {
+	overflow: hidden;
+	cursor: default;
+	span {
+		box-sizing: border-box;
+		display: block;
+		float: left;
+	}
+	&:hover {
+		.radio-box{
+			border: 2px solid rgb(147, 224, 255);
+		}
+	}
+}
+.radio-box {
+	width: 15px;
+	height: 15px;
+	border: 1px solid rgb(92, 167, 186);
+	border-radius: 3px;
+}
+.radio-box-checked {
+	&:before {
+		content: '';
+		display: block;
+		text-align: center;
+		border-radius: 50%;
+		background: rgb(6, 115, 119);//这里可以放图片等
+	}
+}
+.radio-content {
+	line-height: 15px;
+	margin-left: 5px;
+}
+
+
+/************react radio end************/

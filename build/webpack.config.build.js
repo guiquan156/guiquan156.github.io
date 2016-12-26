@@ -83,10 +83,10 @@ module.exports =  {
         )
       }
     }),
-		new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      chunks: ['vendor']
-    }),
+		// new webpack.optimize.CommonsChunkPlugin({
+  //     name: 'manifest',
+  //     chunks: ['vendor']
+  //   }),
 		new webpack.optimize.OccurenceOrderPlugin()
   ]
 }

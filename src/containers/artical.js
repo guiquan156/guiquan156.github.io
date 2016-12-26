@@ -69,6 +69,7 @@ class Artical extends React.Component {
 	}
 }
 
+//把数据注入到组件的props中，使props可以访问state
 module.exports = connect(state => {
 	return {
 		articals: state.articals,
